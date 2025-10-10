@@ -1,4 +1,4 @@
-// FIFO
+// FCFS
 
 #include<stdio.h>
 
@@ -31,11 +31,11 @@ void fcfs(process p[], int n){
 	
 	printf("\nGantt Chart: \n0_");
 	
-	for(int i = 0; i < n; ) {
+	for(int i = 0; i < n; i++) {
 		
 		if(p[i].at > time) {
-			printf("|%d|_%f_", i, time);
 			time = p[i].at;
+			printf("||_%f_", time);
 		}
 		
 		p[i].st = time;
@@ -45,7 +45,6 @@ void fcfs(process p[], int n){
 		
 		time += p[i].bt;
 		printf("P%d_%.1f_", p[i].pid, p[i].ft);
-		i++;
 	}
 }
 
@@ -89,3 +88,4 @@ int main() {
 	
 	return 0;
 }
+
