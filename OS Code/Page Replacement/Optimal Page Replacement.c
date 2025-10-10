@@ -2,6 +2,33 @@
 
 #include<stdio.h>
 
+int opr(int s[], int frame[], int n, int i) {
+	
+	int temp[n];
+	for(int j = 0; j < n; j++) {
+		temp[j] = 100;
+	}
+	
+	for(int j = 0; j < n; j++) {
+		for(int k = i + 1; k < 15; k++) {
+			if(frame[j] == s[k]) {
+				temp[j] = k;
+				break;
+			}
+		}
+	}
+	
+	int val = temp[0], pos = 0;
+	for(int j = 1; j < n; j++) {
+		if(val < temp[j]) {
+			val = temp[j];
+			pos = j;
+		}
+	}
+	
+	return pos;
+}	
+
 int main() {
 	
 	int n, s[15] = {7, 5, 4, 8, 5, 7, 2, 3, 1, 3, 5, 9, 4, 6, 2};
@@ -26,46 +53,28 @@ int main() {
 			}
 		}
 			
-			if(!flag) {
-				page_fault[i] = 1;
-				pf++;
-				int empty = -1;
-				for(int j = 0; j < n; j++) {
-					if(frame[j] == -1) {
-						empty = j;
-						break;
-					}
-				}
-				
-				if(empty != -1) {
-					frame[empty] = page;
-				}
-				
-				else {
-					int far = -1, index = -1;
-					
-					for(int j = 0; j < n; j++) {
-						int k;
-						for(k = i + 1; k < 15; k++) {
-							if(frame[j] == s[k])
-								break;
-						}
-							
-						if(k == 15) {
-							index = j;
-							far = k;
-							break;
-						}
-						
-						else if(k > far) {
-							far = k;
-							index = j;
-						}
-					}
-					
-					frame[index] = page;
+		if(!flag) {
+			page_fault[i] = 1;
+			pf++;
+			int empty = -1;
+			for(int j = 0; j < n; j++) {
+				if(frame[j] == -1) {
+					empty = j;
+					break;
 				}
 			}
+			
+			if(empty != -1) {
+				frame[empty] = page;
+			}
+			
+			else {
+				int index;
+				index = opr(s, frame, n, i);
+				
+				frame[index] = page;
+			}
+		}
 			
 		for(int j = 0; j < n; j++) {
 					memory[j][i] = frame[j];
