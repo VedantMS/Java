@@ -30,10 +30,10 @@ void rrs(process p[], int n, int q) {
 				p[j] = a;
 			}
 		}
-		p[i].st = -1;
 	}
 	
 	for(int i = 0; i < n; i++) {
+		p[i].st = -1;
 		b_bt[i] = p[i].bt;
 	}
 	
@@ -120,3 +120,4 @@ int main() {
 	
 	return 0;
 }
+
