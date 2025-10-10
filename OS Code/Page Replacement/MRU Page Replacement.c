@@ -44,9 +44,9 @@ int main() {
 			}
 			
 			else {
-				int index = s[i - 1];
+				int val = s[i - 1];
 				for(int j = 0; j < n; j++) {
-					if(frame[j] == index) {
+					if(frame[j] == val) {
 						frame[j] = page;
 						break;
 					}
@@ -79,3 +79,4 @@ int main() {
 	
 	return 0;
 }
+
