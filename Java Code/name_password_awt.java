@@ -11,7 +11,7 @@ class name_password_awt extends Frame  implements ActionListener{
 
     Label user, pass, txt;
     TextField t1, t2;
-    Button b;
+    Button b, clr;
     int c = 0;
 
     name_password_awt() {
@@ -21,6 +21,7 @@ class name_password_awt extends Frame  implements ActionListener{
         t1 = new TextField();
         t2 = new TextField();
         b = new Button("Login");
+        clr = new Button("Clear");
 
         t2.setEchoChar('*');
 
@@ -29,6 +30,7 @@ class name_password_awt extends Frame  implements ActionListener{
         pass.setBounds(40, 100, 100, 30);
         t2.setBounds(180, 100, 150, 30);
         b.setBounds(40, 150, 40, 40);
+        clr.setBounds(40, 180, 40, 40);
         txt.setBounds(100, 150, 250, 40);
 
         add(user);
@@ -36,9 +38,11 @@ class name_password_awt extends Frame  implements ActionListener{
         add(t1);
         add(t2);
         add(b);
+        add(clr);
         add(txt);
 
         b.addActionListener(this);
+        clr.addActionListener(this);
 
         setSize(400, 400);
         setTitle("Login Window");
@@ -47,6 +51,12 @@ class name_password_awt extends Frame  implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == clr) {
+            t1.setText("");
+            t2.setText("");
+            return;
+        }
+
         String username = t1.getText();
         String password = t2.getText();
 
